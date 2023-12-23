@@ -1,0 +1,122 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: azure;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif; 
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 80px;   
+    letter-spacing: 3px;
+    grid-column: 2;
+    justify-self: center;
+    align-self: center;
+}
+
+.header .open-form {
+    grid-column: 1;
+    align-self: end;
+    justify-self: center;
+    border: none;
+    background-color: var(--bg-color);
+    height: 50px; width: 200px;
+    font-size: 30px;
+}
+
+.header .open-form:hover,
+.library-item button:hover {
+    box-shadow: 0 0 3px black;
+} 
+
+.library-header,
+.library-item {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+}
+
+.library-header {
+    margin-bottom: 10px;
+}
+
+.title {
+    font-weight: 800;
+}
+
+.library-item {
+    border: 2px solid rgb(136, 136, 136);
+    border-radius: 12px;
+    height: 60px;
+    align-items: center;
+    background-color: white;
+    margin-bottom: 10px;
+}
+
+.library-header h3,
+.library-item h3,
+.library-item p {
+    margin-left: 16px;
+}
+
+.library-item button {
+    font-size: 14px;
+    height: 30px; width: 120px;
+    border: none;
+    border-radius: 6px;
+    background-color: rgb(207, 79, 79);
+    color: white
+}
+
+.library-item button.read {
+    background-color: rgb(85, 155, 85);
+}
+
+body {
+    background-color: var(--bg-color);
+    width: 60%;
+    height: 100vh;
+    display: grid;
+    grid-template: 200px  1fr / 1fr;
+}
+
+ul {
+    list-style-type: none;
+}
+
+dialog {
+    margin: 300px auto;
+}
+
+form {
+    height: 300px; width: 300px;
+    display: grid;
+    grid-template: repeat(5, 1fr) / 1fr;
+    padding: 30px;
+    gap: 16px;
+    font-size: 14px;
+}
+
+form p {
+    display: inline;
+}
+
+form button {
+    height: 40px;
+}
+
+form input[type="text"],
+form input[type="number"] {
+    width: 100%;
+    height: 1.4rem;
+}
