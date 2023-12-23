@@ -50,11 +50,19 @@ function refreshLibrary() {
 
     //loop through myLibrary contents
 
-    for(let i = 0; i < myLibrary.length; i++) {
-        const newItem = createCard(myLibrary[i]);
-        libraryList.appendChild(newItem);
+    if(myLibrary.length < 1) {
+        const emptyMessage = document.createElement("pre");
+        emptyMessage.textContent = `----------   Nothing to display   ----------`;
+        emptyMessage.classList.add("empty-message");
+        libraryList.appendChild(emptyMessage);
+    } else {
+        for(let i = 0; i < myLibrary.length; i++) {
+            const newItem = createCard(myLibrary[i]);
+            libraryList.appendChild(newItem);
+        }
     }
 
+    
 }
 
 function createCard(libraryItem) {
