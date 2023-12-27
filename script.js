@@ -22,14 +22,19 @@ openForm.addEventListener("click", () => {
 });
 
 addBook.addEventListener("click", (e) => {
-    const bookTitle = document.querySelector(".book-title").value;
-    const bookAuthor = document.querySelector(".book-author").value;
-    const totalPages = document.querySelector(".total-pages").value;
-    const hasRead = document.querySelector(".has-read").checked;
+    const bookTitle = document.querySelector(".book-title");
+    const bookAuthor = document.querySelector(".book-author");
+    const totalPages = document.querySelector(".total-pages");
+    const hasRead = document.querySelector(".has-read");
 
-    const newBook = new Book(bookTitle, bookAuthor, totalPages, hasRead);
+    const newBook = new Book(bookTitle.value, bookAuthor.value, totalPages.value, hasRead.value);
 
     addBookToLibrary(newBook);
+
+    bookTitle.value = "";
+    bookAuthor.value = "";
+    totalPages.value = "";
+    hasRead.checked = false;
 
     e.preventDefault();
     formModal.close();
