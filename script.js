@@ -27,7 +27,7 @@ addBook.addEventListener("click", (e) => {
     const totalPages = document.querySelector(".total-pages");
     const hasRead = document.querySelector(".has-read");
 
-    const newBook = new Book(bookTitle.value, bookAuthor.value, totalPages.value, hasRead.value);
+    const newBook = new Book(bookTitle.value, bookAuthor.value, totalPages.value, hasRead.checked);
 
     addBookToLibrary(newBook);
 
