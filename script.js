@@ -3,18 +3,15 @@ const openForm = document.querySelector(".open-form");
 const addBook = document.querySelector(".add-book");
 const libraryList = document.querySelector(".library-items");
 
-const myLibrary = [{
-    title: "title",
-    author: "author",
-    pages: 3,
-    hasRead: true,
-}];
+const myLibrary = [];
 
-function Book(title, author, pages, hasRead) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.hasRead = Boolean(hasRead);
+class Book {
+    constructor(title, author, pages, hasRead) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = Boolean(hasRead);
+    }
 }
 
 openForm.addEventListener("click", () => {
