@@ -1,4 +1,5 @@
 const formModal = document.querySelector(".form-modal");
+const bookForm = document.querySelector('.book-form');
 const openForm = document.querySelector(".open-form");
 const addBook = document.querySelector(".add-book");
 const libraryList = document.querySelector(".library-items");
@@ -23,18 +24,21 @@ addBook.addEventListener("click", (e) => {
     const bookAuthor = document.querySelector(".book-author");
     const totalPages = document.querySelector(".total-pages");
     const hasRead = document.querySelector(".has-read");
-
     const newBook = new Book(bookTitle.value, bookAuthor.value, totalPages.value, hasRead.checked);
 
-    addBookToLibrary(newBook);
-
-    bookTitle.value = "";
-    bookAuthor.value = "";
-    totalPages.value = "";
-    hasRead.checked = false;
-
+    if(!bookForm.checkValidity()) {        
+        bookTitle.reportValidity();
+        bookAuthor.reportValidity();
+        totalPages.reportValidity();
+    } else {
+        addBookToLibrary(newBook);
+        bookTitle.value = "";
+        bookAuthor.value = "";
+        totalPages.value = "";
+        hasRead.checked = false;
+        formModal.close();
+    }
     e.preventDefault();
-    formModal.close();
 });
 
 function addBookToLibrary(book) {
@@ -43,15 +47,11 @@ function addBookToLibrary(book) {
 }
 
 function refreshLibrary() {
-
-    //clear library div
-    
     while(libraryList.firstChild) {
         libraryList.removeChild(libraryList.firstChild);
     }
 
     //loop through myLibrary contents
-
     if(myLibrary.length < 1) {
         const emptyMessage = document.createElement("pre");
         emptyMessage.textContent = `----------   Nothing to display   ----------`;
@@ -62,21 +62,18 @@ function refreshLibrary() {
             const newItem = createCard(myLibrary[i]);
             libraryList.appendChild(newItem);
         }
-    }
-
-    
+    } 
 }
 
 function createCard(libraryItem) {
     const newCard = document.createElement("li");
     newCard.classList.add("library-item");
-
     const title = document.createElement("p");
     title.classList.add("title");
     const author = document.createElement("p");
     const pages = document.createElement("p");
-
     const toggleRead = document.createElement("button");
+
     if(libraryItem.hasRead) {
         toggleRead.classList.add("read");
         toggleRead.textContent = "Read";
@@ -95,14 +92,12 @@ function createCard(libraryItem) {
     removeButton.textContent = "Remove";
     removeButton.addEventListener("click", (e) => {
         myLibrary.splice(myLibrary.indexOf(libraryItem), 1);
-        
         refreshLibrary();
     });
 
     title.textContent = libraryItem.title;
     author.textContent = libraryItem.author;
     pages.textContent = libraryItem.pages + " pages";
-
     newCard.appendChild(title);
     newCard.appendChild(author);
     newCard.appendChild(pages);
